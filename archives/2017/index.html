@@ -23,6 +23,8 @@
     
     
     
+        <link rel="dns-prefetch" href="https://hm.baidu.com"/>
+    
     
     
     
@@ -258,11 +260,18 @@
     <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
 
     <!-- Analytics -->
-    
+    <script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?fc8115af7906e54145baefa42bd05d69';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script>
 
     <!-- Custom Head -->
     
-</head>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
 
     
@@ -289,6 +298,8 @@
     <div class="locate-thumbnail-symbol"></div>
 
     <!-- Pin on top -->
+    
+        
     
 
     <!-- Normal Post -->
@@ -481,17 +492,27 @@
     <!-- Pages  -->
     
         <li>
-            <a href="/hello-world" title="About">
+            <a href="/2017/07/04/hello-world/" title="关于我">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About
+                关于我
             </a>
         </li>
+        
+            <li class="divider"></li>
         
     
 
     <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">1</span>
+            </a>
+        </li>
+        
     
 </ul>
 
@@ -689,6 +710,9 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+
+
+   <!-- 使用 DISQUS js 代码 -->
 
 
 
