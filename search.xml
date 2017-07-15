@@ -3,6 +3,105 @@
   
     
     <entry>
+      <title><![CDATA[简单Java类]]></title>
+      <url>/2017/07/14/----2/</url>
+      <content type="html"><![CDATA[<p>第一个代码模型：简单Java类</p>
+<h2 id="简单Java类"><a href="#简单Java类" class="headerlink" title="简单Java类"></a>简单Java类</h2><p>· 现在要求开发一个雇员的类，里面包含有雇员编号、姓名、职位、基本工资、佣金。</p>
+<p>· 对于简单Java类而言，可以给出第一种开发要求：</p>
+<ol>
+<li>类名称必须存在意义，例如：Book，Emp；</li>
+<li>类之中所有的属性必须<code>private</code>封装，封装后的属性必须提供有<code>setter</code>、<code>getter</code>；</li>
+<li>类之中可以提供有任意多个构造方法，但是必须保留有一个无参构造方法；</li>
+<li>类之中不允许出现任何的输出语句，所有信息输出必须交给被调用处输出；</li>
+<li>类之中需要提供有一个去的完整信息的方法，暂定为：<code>getInfo()</code>，而且返回<code>String</code>型数据;</li>
+</ol>
+<hr>
+<p>范例：开发程序类</p>
+<pre class=" language-bash"><code class="language-bash">class Emp <span class="token punctuation">{</span>
+        private int empno<span class="token punctuation">;</span> //定义一个有意义的类
+        private String ename<span class="token punctuation">;</span>
+        private String job<span class="token punctuation">;</span>
+        private double sal<span class="token punctuation">;</span>
+        private double <span class="token function">comm</span><span class="token punctuation">;</span>
+
+        public Emp<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span> //无参
+        public Emp<span class="token punctuation">(</span>int eno, String ena, String j, double s, double c <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                empno <span class="token operator">=</span> eno<span class="token punctuation">;</span>
+                ename <span class="token operator">=</span> ena<span class="token punctuation">;</span>
+                job <span class="token operator">=</span> j<span class="token punctuation">;</span>
+                sal <span class="token operator">=</span> s<span class="token punctuation">;</span>
+                <span class="token function">comm</span> <span class="token operator">=</span> c<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>//有参
+
+        public void setEmpno<span class="token punctuation">(</span>int e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                empno <span class="token operator">=</span> e<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        public int getEmpno<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> empno<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        public void setEname<span class="token punctuation">(</span>String e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                ename <span class="token operator">=</span> e<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        public String getEname<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> ename<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        public void setJob<span class="token punctuation">(</span>String j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                job <span class="token operator">=</span> j<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        public String getJob<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> job<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        public void setSal<span class="token punctuation">(</span>double s<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                sal <span class="token operator">=</span> s<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        public double getSal<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> sal<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        public void setComm<span class="token punctuation">(</span>double c<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token function">comm</span> <span class="token operator">=</span> c<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        public double getComm<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token function">comm</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        public String  getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span>  <span class="token string">"雇员编号："</span> + empno + <span class="token string">"\n"</span>+
+                        <span class="token string">"雇员姓名："</span> + ename + <span class="token string">"\n"</span>+
+                        <span class="token string">"雇员职位："</span> + job + <span class="token string">"\n"</span>+
+                        <span class="token string">"基本工资："</span> + sal + <span class="token string">"\n"</span>+
+                        <span class="token string">"佣    金："</span> + <span class="token function">comm</span> <span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>范例：编写测试程序</p>
+<pre class=" language-bash"><code class="language-bash">public class Demo <span class="token punctuation">{</span>
+        public static void main <span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Emp e <span class="token operator">=</span> new Emp<span class="token punctuation">(</span>7369, <span class="token string">"SMITH"</span>, <span class="token string">"CLERK"</span>, 800.0, 1.0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                e.setEname<span class="token punctuation">(</span><span class="token string">"ALLEN"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                System.out.println<span class="token punctuation">(</span>e.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                System.out.println<span class="token punctuation">(</span><span class="token string">"姓名："</span>+e.getEname<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>所有类之中提供的<code>setter</code>、<code>getter</code>方法可能某些操作不会使用到，但是依然必须提供，同时所有的<code>setter</code>方法除了具备有设置属性的内容之外，也具备修改属性内容的功能。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>简单Java类是日后进行整个项目开发的千分之一的组成部分，也是最为重要的组成部分。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Java8程序设计 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[面向对象<封装性>]]></title>
       <url>/2017/07/13/----1/</url>
       <content type="html"><![CDATA[<p>封装性</p>
