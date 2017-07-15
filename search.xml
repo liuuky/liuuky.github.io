@@ -6,7 +6,7 @@
       <title><![CDATA[面向对象<封装性>]]></title>
       <url>/2017/07/13/----1/</url>
       <content type="html"><![CDATA[<p>封装性</p>
-<h1 id="面向对象—封装性"><a href="#面向对象—封装性" class="headerlink" title="面向对象—封装性"></a>面向对象—封装性</h1><pre class=" language-bash"><code class="language-bash">class Book <span class="token punctuation">{</span>
+<h2 id="面向对象—封装性"><a href="#面向对象—封装性" class="headerlink" title="面向对象—封装性"></a>面向对象—封装性</h2><pre class=" language-bash"><code class="language-bash">class Book <span class="token punctuation">{</span>
         private String title<span class="token punctuation">;</span>
         private double price<span class="token punctuation">;</span>
         public void setTitle<span class="token punctuation">(</span>String t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -51,7 +51,7 @@ public class TestDemo <span class="token punctuation">{</span>
         <span class="token punctuation">}</span>
 </code></pre>
 <p>对于数据的验证部分在标准开发之中应该是由其他的辅助代码完成的，而在实际开发之中setter往往是简单地设置数据，getter简单地的去的数据而已。</p>
-<p>#总结<br>1.封装性就是保证类内部的定义被外部不可见，但是本次所讲解的封装，只是所有面向对象中封装的一小部分。<br>2.所有属性都必须使用private封装，封装后的属性如果要被外部所访问，要定义setter，getter。<br>3.访问控制符包括：private → default → protected → public 访问控制级别由小到大。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1.封装性就是保证类内部的定义被外部不可见，但是本次所讲解的封装，只是所有面向对象中封装的一小部分。<br>2.所有属性都必须使用private封装，封装后的属性如果要被外部所访问，要定义setter，getter。<br>3.访问控制符包括：private → default → protected → public 访问控制级别由小到大。</p>
 <table>
 <thead>
 <tr>
