@@ -205,6 +205,83 @@ public class TestDemo <span class="token punctuation">{</span>
     </entry>
     
     <entry>
+      <title><![CDATA[面向对象<类与对象>]]></title>
+      <url>/2017/07/13/----3/</url>
+      <content type="html"><![CDATA[<h2 id="面向对象程序设计—类与对象"><a href="#面向对象程序设计—类与对象" class="headerlink" title="面向对象程序设计—类与对象"></a>面向对象程序设计—类与对象</h2><p>   面向对象：以一种组件化的形式进行代码的设计。<br>   优点：代码重用。    </p>
+<h4 id="特征："><a href="#特征：" class="headerlink" title="特征："></a>特征：</h4><hr>
+<ol>
+<li>封装性：保护内部的定义结构安全性 。</li>
+<li>继承性：在已有的程序结构上继续扩充新的功能。</li>
+<li>多态性：指的是在某一个概念范围内的满足。  </li>
+</ol>
+<h4 id="面向对象的开发步骤："><a href="#面向对象的开发步骤：" class="headerlink" title="面向对象的开发步骤："></a>面向对象的开发步骤：</h4><pre><code>OOA（面向对象分析） 
+OOD（面向对象设计）
+OOP（面向对象编程）
+</code></pre><p>类实际上是对象操作的模板，但是类不能直接使用，必须通过实例对象使用。</p>
+<hr>
+<pre class=" language-bash"><code class="language-bash">class Book <span class="token punctuation">{</span>
+        String title<span class="token punctuation">;</span>
+        double price<span class="token punctuation">;</span>
+        public void getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                System.out.println<span class="token punctuation">(</span><span class="token string">"图书名称："</span> + title + <span class="token string">",价格:"</span> +price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span>
+</code></pre>
+<p>在类里面定义了两个属性和一个方法，类现在已经产生，但是如果想要使用类必须要有对象，那么对象的定义格式有如下两种。</p>
+<pre><code>    ·声明并实例化对象：类名称 对象名称 = new 类名称（）；
+    ·分步完成：
+        -声明对象：类名称 对象名称 = null；
+        -实例化对象： 对象名称 = new 类名称（）；
+</code></pre><p>引用数据类型与基本数据类型最大的不同在于需要内存的开辟及使用，所以关键字 new 的主要功能就是开辟内存空间，即：只要是引用数据类型想使用，那么就必须使用关键词 new 开辟空间。<br>当一个对象实例化之后那么就可以按照如下的方式利用对象来操作类的结构：</p>
+<pre><code>·对象.属性：表示要操作类中的属性内容
+·对象.方法()：表示要调用类中的方法      
+</code></pre><p>范例：使用类—在主类中使用Book类</p>
+<pre class=" language-bash"><code class="language-bash">public class TestDemo <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Book bk <span class="token operator">=</span> new Book<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> //声明并实例化对象
+                bk.title <span class="token operator">=</span> <span class="token string">"java开发"</span><span class="token punctuation">;</span> //操作属性内容
+                bk.price <span class="token operator">=</span> 90<span class="token punctuation">;</span> //操作属性内容
+                bk.getInfo <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //调用类中的getInfo（）方法
+
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>如果想要对以上的程序进行内存分析，可以首先给出两块内存空间的概念：</p>
+<pre><code>·堆内存：保存每一个对象的属性内容，堆内存需要用关键字 new 在可以开辟新。
+·栈内存：保存的是一块堆内存的地址，但是为了分析方便，可以简单地理解栈内存保存的是对象名字；
+</code></pre><h4 id="引用数据的初步分析"><a href="#引用数据的初步分析" class="headerlink" title="引用数据的初步分析:"></a>引用数据的初步分析:</h4><hr>
+<p>引用类似C++的指针，但比之间更加简单</p>
+<pre class=" language-bash"><code class="language-bash">public class TestDemo <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Book bookA <span class="token operator">=</span> new Book<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span> //声明并实例化对象
+                Book bookB <span class="token operator">=</span> new Book<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+                bookA.title <span class="token operator">=</span> <span class="token string">"Java开发"</span><span class="token punctuation">;</span> //操作属性内容
+                bookA.price <span class="token operator">=</span> 89.8<span class="token punctuation">;</span> //操作属性内容
+                bookB.title <span class="token operator">=</span> <span class="token string">"JSP开发"</span><span class="token punctuation">;</span> //操作属性内容
+                bookB.price <span class="token operator">=</span> 69.8<span class="token punctuation">;</span> //操作属性内容
+                bookB <span class="token operator">=</span> bookA<span class="token punctuation">;</span>//引用关系
+                bookB.price <span class="token operator">=</span> 100.1<span class="token punctuation">;</span>
+                bookA.getInfo <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //调用类中的getInfo（）方法
+
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="内存分析图："><a href="#内存分析图：" class="headerlink" title="内存分析图："></a>内存分析图：</h4><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-13 15.34.49.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-13 15.34.49"></p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>1.类描述的是公共特征，类必须通过对象才可以使用；<br>2.声明对象指的是为开辟堆内存的对象，如果直接使用此对象会出现“NullPointerException”异常；对象可以通过关键字 new 来进行堆内存空间的开辟，有了对内存应用的对象才成为实例化对象；<br>3.堆内存保存的是对象中所有属性的内容，而栈内存保存的是对内存的地址数值（为了简单理解，才称栈内存保存的是对象名称）；<br>4.垃圾空间指的是没有任何栈内存指向的堆内存空间，会被GC不定期进行回收；<br>5.熟练掌握以上内存图的分析方法；</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Java8程序设计 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[莎士比亚诗集]]></title>
       <url>/2017/07/06/---/</url>
       <content type="html"><![CDATA[<h2 id="《十四行诗十八首》-莎士比亚"><a href="#《十四行诗十八首》-莎士比亚" class="headerlink" title="《十四行诗十八首》 莎士比亚"></a>《十四行诗十八首》 <code>莎士比亚</code></h2><p><img src="http://osltchohc.bkt.clouddn.com/photo.png?
