@@ -26,6 +26,290 @@ imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/f
     </entry>
     
     <entry>
+      <title><![CDATA[数组的定义与使用]]></title>
+      <url>/2017/07/16/----5/</url>
+      <content type="html"><![CDATA[<h2 id="数组与方法参数的传递"><a href="#数组与方法参数的传递" class="headerlink" title="数组与方法参数的传递"></a>数组与方法参数的传递</h2><p>数组定义语法有如下两种： </p>
+<ol>
+<li>声明并开辟数组: <code>数据类型 数据名称[]  = new 数据类型[长度];</code></li>
+<li>分不完成: <ol>
+<li><code>声明数组：数组类型 数组名称[] = null;</code></li>
+<li><code>开辟数组：数组名称 = new 数据类型[长度];</code></li>
+</ol>
+</li>
+</ol>
+<p>方法传递数据类型可以是基本数据类型也可以是数组数据类型，如果传递的是数组，要观察内存分布图。</p>
+<p>范例：一个数组传递的程序</p>
+<pre class=" language-bash"><code class="language-bash">public class ArrayDemo <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                int data <span class="token operator">=</span> new int<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>1,2,3<span class="token punctuation">}</span><span class="token punctuation">;</span>
+                change<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span> //int  tamp <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">;</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> data.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        System.out.println<span class="token punctuation">(</span>data<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+            //此方法定义在主类中，并且由主方法直接调用
+        public static void change<span class="token punctuation">(</span>int temp<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> temp.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        temp<span class="token punctuation">[</span>x<span class="token punctuation">]</span> *<span class="token operator">=</span> 2<span class="token punctuation">;</span>  // 将数组内容乘二2保存
+                <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="内存分析图"><a href="#内存分析图" class="headerlink" title="内存分析图"></a>内存分析图</h4><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-16 21.29.21.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-16 21.29.21"></p>
+<h5 id="在进行数组的引用传递过程之中，方法对数组的修改一定会影响到原始数据。"><a href="#在进行数组的引用传递过程之中，方法对数组的修改一定会影响到原始数据。" class="headerlink" title="在进行数组的引用传递过程之中，方法对数组的修改一定会影响到原始数据。"></a>在进行数组的引用传递过程之中，方法对数组的修改一定会影响到原始数据。</h5><h4 id="面试题：请编写一个数组排序操作（冒泡排序法）"><a href="#面试题：请编写一个数组排序操作（冒泡排序法）" class="headerlink" title="面试题：请编写一个数组排序操作（冒泡排序法）"></a>面试题：请编写一个数组排序操作（冒泡排序法）</h4><hr>
+<pre class=" language-bash"><code class="language-bash">public class Array <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                int data<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> new int<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>2,1,6,8,3,9,4,7,5<span class="token punctuation">}</span><span class="token punctuation">;</span>
+                sort<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span> //实现排序
+                print<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        public static void sort<span class="token punctuation">(</span>int arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> arr.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                //外层控制排序的次数
+                        for<span class="token punctuation">(</span>int y <span class="token operator">=</span> 0<span class="token punctuation">;</span> y <span class="token operator">&lt;</span> arr.length - 1<span class="token punctuation">;</span> y++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        //内层控制每次的排序控制
+                                if<span class="token punctuation">(</span>arr<span class="token punctuation">[</span>y<span class="token punctuation">]</span> <span class="token operator">></span> arr <span class="token punctuation">[</span>y + 1<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                        int t <span class="token operator">=</span> arr<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                                        arr<span class="token punctuation">[</span>y<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>y + 1<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                                        arr<span class="token punctuation">[</span>y + 1<span class="token punctuation">]</span> <span class="token operator">=</span> t<span class="token punctuation">;</span>
+                                <span class="token punctuation">}</span>
+                        <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        //专门定义一个输出功能的方法
+        public static void print<span class="token punctuation">(</span>int temp<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> temp.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                        System.out.print<span class="token punctuation">(</span>temp<span class="token punctuation">[</span>x<span class="token punctuation">]</span> + <span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                System.out.println<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="一维数组的转置"><a href="#一维数组的转置" class="headerlink" title="一维数组的转置"></a>一维数组的转置</h4><hr>
+<pre class=" language-bash"><code class="language-bash">public class ArrayOne <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                int data<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> new int<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>1,2,3,4,5,6,7,8,9<span class="token punctuation">}</span><span class="token punctuation">;</span>
+                reverse<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>//实现转置
+                print<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //此方法专门实现数组的转置操作
+        public static void reverse<span class="token punctuation">(</span>int arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                int len <span class="token operator">=</span> arr.length / 2<span class="token punctuation">;</span>//转置的次数
+                int <span class="token function">head</span> <span class="token operator">=</span> 0<span class="token punctuation">;</span>//头部索引
+                int <span class="token function">tail</span> <span class="token operator">=</span> arr.length - 1<span class="token punctuation">;</span>//尾部索引
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        int temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>head<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                        arr<span class="token punctuation">[</span>head<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>tail<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                        arr<span class="token punctuation">[</span>tail<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                        head++<span class="token punctuation">;</span>
+                        tail--<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        public static void print<span class="token punctuation">(</span>int temp<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> temp.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        System.out.print<span class="token punctuation">(</span>temp<span class="token punctuation">[</span>x<span class="token punctuation">]</span> + <span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                System.out.println<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="二维数组的转置"><a href="#二维数组的转置" class="headerlink" title="二维数组的转置"></a>二维数组的转置</h4><hr>
+<p>前提：是一个行与列完全相同的数组</p>
+<pre class=" language-bash"><code class="language-bash">public class ArrayTwo <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                int data<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> new int<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+                 <span class="token punctuation">{</span>1,2,3<span class="token punctuation">}</span>,<span class="token punctuation">{</span>4,5,6<span class="token punctuation">}</span>,<span class="token punctuation">{</span>7,8,9<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+                reverse<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span> //实现转置
+                print<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //此方法专门实现数组的转置操作
+        public static void reverse<span class="token punctuation">(</span>int arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> arr.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        for<span class="token punctuation">(</span>int y <span class="token operator">=</span> x<span class="token punctuation">;</span> y <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>x<span class="token punctuation">]</span>.length<span class="token punctuation">;</span> y++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                                if<span class="token punctuation">(</span>x <span class="token operator">!=</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span> //行与列不相同，进行交换
+                                        int temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                                        arr<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                                        arr<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+                                <span class="token punctuation">}</span>
+                        <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        //专门定义一个输出功能的方法
+        public static void print<span class="token punctuation">(</span>int temp<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> temp.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        for<span class="token punctuation">(</span>int y <span class="token operator">=</span> 0<span class="token punctuation">;</span> y <span class="token operator">&lt;</span>temp<span class="token punctuation">[</span>x<span class="token punctuation">]</span>.length<span class="token punctuation">;</span> y++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                System.out.print<span class="token punctuation">(</span>temp<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>y<span class="token punctuation">]</span> + <span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                        System.out.println<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                System.out.println<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><hr>
+<p>第一次转换：（ x = 0, y = x = 0,循环3次）<br>· y的第一次循环 （x==y，条件不满足，不进行交换）</p>
+<p>· y的第二次循环 （x=0，y=1，条件满足，进行交换）</p>
+<p>· y的第三次循环 （x=0，y=2，条件满足，进行交换）</p>
+<p>第二次转换：（ x = 1，y = x = 1，循环2次）<br>· y的第一次循环 （x=1，y=1，条件不满足，不进行交换）</p>
+<p>· y的第二次循环 （x=1，y=2，条件满足，进行交换）</p>
+<p>第三次转换：（ x = 2， y = x = 2，循环1次）<br>· y的第一次循环 （x=2，y=2，条件不满足，不进行交换）</p>
+<h2 id="数组操作方法"><a href="#数组操作方法" class="headerlink" title="数组操作方法"></a>数组操作方法</h2><p>Java本身针对数组是有提供类库的支持，例如如下两种与数组有关的操作方法。</p>
+<ol>
+<li><p>数组拷贝：可以将一个数组的部分内容拷贝到另外一个数组之中</p>
+<ol>
+<li>语法<code>System.arraycopy(原数组名称，原数组拷贝开始索引，目标数组名称，目标数组拷贝开始索引，长度);</code> </li>
+<li><p>范例：实现数组拷贝</p>
+<pre><code> 数组A：1、2、3、4、5、6、7、8
+ 数组B：11、22、33、44、55、66、77、88
+ 要求拷贝后的数组B：11、22、33、4、5、6、77、88
+</code></pre></li>
+</ol>
+</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash">public class ArrayOne <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                int dataA<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> new int<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>1,2,3,4,5,6,7,8<span class="token punctuation">}</span><span class="token punctuation">;</span>
+                int dataB<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> new int<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>11,22,33,44,55,66,77,88<span class="token punctuation">}</span><span class="token punctuation">;</span>
+                System.arraycopy<span class="token punctuation">(</span>dataA,3,dataB,3,3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                print<span class="token punctuation">(</span>dataB<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+
+        public static void print<span class="token punctuation">(</span>int temp<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> temp.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        System.out.print<span class="token punctuation">(</span>temp<span class="token punctuation">[</span>x<span class="token punctuation">]</span> + <span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                System.out.println<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ol>
+<li>数组排序：<ol>
+<li>语法：<code>java.util.Arrays.sort(data);</code></li>
+<li>范例：实现排序</li>
+</ol>
+</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash">public class ArrayOne <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                int data<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> new int<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>3,7,5,8,2,6,1<span class="token punctuation">}</span><span class="token punctuation">;</span>
+                java.util.Arrays.sort<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                print<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+
+        public static void print<span class="token punctuation">(</span>int temp<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> temp.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        System.out.print<span class="token punctuation">(</span>temp<span class="token punctuation">[</span>x<span class="token punctuation">]</span> + <span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                System.out.println<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="对象数组（重点）"><a href="#对象数组（重点）" class="headerlink" title="对象数组（重点）"></a>对象数组（重点）</h2><p>· 数组是引用类型，而类也同样是引用类型，所以如果是对象数组的话表示一个引用类型里面嵌套其他的引用类型。<br>· 所有的引用数据类型也同样可以定义数组，这样的数组称为对象数组。<br>·定义对象数组（以类为例），可以采用如下形式</p>
+<pre><code>1. 动态初始化：开辟之后对象数组的内容都是null值
+    |- 声明并实例化对象：  类名称 对象数组名称【】 = new 类名称【长度】;
+    |- 分步完成：
+        |·声明对象数组：类名称 对象数组名称【】 = null;
+        |·开辟对象数组：对象数组名称 =  new 类名称【长度】;
+2. 静态初始化：
+    类名称 对象数组名称【】 = new 类名称【】{实例化对象，实例化对象，......}
+</code></pre><h4 id="范例：对象数组的动态初始化"><a href="#范例：对象数组的动态初始化" class="headerlink" title="范例：对象数组的动态初始化"></a>范例：对象数组的动态初始化</h4><hr>
+<pre class=" language-bash"><code class="language-bash">class Book <span class="token punctuation">{</span>
+        private String title<span class="token punctuation">;</span>
+        private double price<span class="token punctuation">;</span>
+        public Book<span class="token punctuation">(</span>String t, double p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                title <span class="token operator">=</span> t<span class="token punctuation">;</span>
+                price <span class="token operator">=</span> p<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //setter，getter，无参构造略
+        public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token string">"书名:"</span> +title + <span class="token string">",价格："</span> + price<span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+public class ArrayOne <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Book books<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> new Book<span class="token punctuation">[</span>3<span class="token punctuation">]</span><span class="token punctuation">;</span> //开辟了一个三个长度的对象数组
+                //对象数组中的每一个数据都需要分别实例化即对象数组的动态实例化
+                books<span class="token punctuation">[</span>0<span class="token punctuation">]</span> <span class="token operator">=</span> new Book<span class="token punctuation">(</span><span class="token string">"Java"</span>,68.8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                books<span class="token punctuation">[</span>1<span class="token punctuation">]</span> <span class="token operator">=</span> new Book<span class="token punctuation">(</span><span class="token string">"JSP"</span>,78.8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                books<span class="token punctuation">[</span>2<span class="token punctuation">]</span> <span class="token operator">=</span> new Book<span class="token punctuation">(</span><span class="token string">"Android"</span>,88.8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                <span class="token keyword">for</span> <span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> books.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        System.out.println<span class="token punctuation">(</span>books<span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span>
+
+
+        public static void print<span class="token punctuation">(</span>int temp<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> temp.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        System.out.print<span class="token punctuation">(</span>temp<span class="token punctuation">[</span>x<span class="token punctuation">]</span> + <span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                System.out.println<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h5 id="对象数组实际上就是将多个对象交给数组统一管理。"><a href="#对象数组实际上就是将多个对象交给数组统一管理。" class="headerlink" title="对象数组实际上就是将多个对象交给数组统一管理。"></a>对象数组实际上就是将多个对象交给数组统一管理。</h5><h4 id="范例：使用静态初始化"><a href="#范例：使用静态初始化" class="headerlink" title="范例：使用静态初始化"></a>范例：使用静态初始化</h4><hr>
+<pre class=" language-bash"><code class="language-bash">class Book <span class="token punctuation">{</span>
+        private String title<span class="token punctuation">;</span>
+        private double price<span class="token punctuation">;</span>
+        public Book<span class="token punctuation">(</span>String t, double p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                title <span class="token operator">=</span> t<span class="token punctuation">;</span>
+                price <span class="token operator">=</span> p<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        //setter，getter，无参构造略
+        public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token string">"书名:"</span> +title + <span class="token string">",价格："</span> + price<span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+public class ArrayOne <span class="token punctuation">{</span>
+        public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                Book books<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> new Book<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>//开辟了一个三个长度的对象数组
+                new Book<span class="token punctuation">(</span><span class="token string">"Java"</span>,68.8<span class="token punctuation">)</span>, //对象数组静态初始化
+                new Book<span class="token punctuation">(</span><span class="token string">"JSP"</span>,78.8<span class="token punctuation">)</span>,
+                new Book<span class="token punctuation">(</span><span class="token string">"Android"</span>,88.8<span class="token punctuation">)</span>
+                <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+                <span class="token keyword">for</span> <span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> books.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        System.out.println<span class="token punctuation">(</span>books<span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span>
+
+
+        public static void print<span class="token punctuation">(</span>int temp<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> temp.length<span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        System.out.print<span class="token punctuation">(</span>temp<span class="token punctuation">[</span>x<span class="token punctuation">]</span> + <span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                System.out.println<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+]]></content>
+      
+        <categories>
+            
+            <category> Java8程序设计 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[简单Java类]]></title>
       <url>/2017/07/14/----2/</url>
       <content type="html"><![CDATA[<p>第一个代码模型：简单Java类</p>
