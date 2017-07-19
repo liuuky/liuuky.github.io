@@ -3,6 +3,107 @@
   
     
     <entry>
+      <title><![CDATA[String类的特点]]></title>
+      <url>/2017/07/17/----6/</url>
+      <content type="html"><![CDATA[<h2 id="String类的两种实例化方式"><a href="#String类的两种实例化方式" class="headerlink" title="String类的两种实例化方式"></a>String类的两种实例化方式</h2><p>①.String对象的直接赋值实例化 语法：<code>String 变量 = “字符串”;</code></p>
+<pre class=" language-bash"><code class="language-bash">  1 public class StringDemo <span class="token punctuation">{</span>
+  2         public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  3                 String str <span class="token operator">=</span> <span class="token string">"Hello World"</span><span class="token punctuation">;</span>
+  4                 System.out.println<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  5         <span class="token punctuation">}</span>
+  6 <span class="token punctuation">}</span>
+</code></pre>
+<p>代码并未使用关键词<code>new</code><br>②.利用构造方法实例化：public String（String str），在构造里面依然要接收一个本类对象</p>
+<pre class=" language-bash"><code class="language-bash">  1 public class StringDemo <span class="token punctuation">{</span>
+  2         public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  3                 String str <span class="token operator">=</span> new String<span class="token punctuation">(</span> <span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  4                 System.out.println<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  5         <span class="token punctuation">}</span>
+  6 <span class="token punctuation">}</span>
+</code></pre>
+<h2 id="字符串的比较"><a href="#字符串的比较" class="headerlink" title="字符串的比较"></a>字符串的比较</h2><p>范例：在String对象上使用“==”比较</p>
+<pre class=" language-bash"><code class="language-bash">  1 public class StringDemo <span class="token punctuation">{</span>
+  2         public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  3                 String stra <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+  4                 String strb <span class="token operator">=</span> new String<span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  5                 String strc <span class="token operator">=</span> strb<span class="token punctuation">;</span>
+  6                 System.out.println<span class="token punctuation">(</span>stra <span class="token operator">==</span> strb<span class="token punctuation">)</span><span class="token punctuation">;</span> //false
+  7                 System.out.println<span class="token punctuation">(</span>stra <span class="token operator">==</span> strc<span class="token punctuation">)</span><span class="token punctuation">;</span> //false
+  8                 System.out.println<span class="token punctuation">(</span>strb <span class="token operator">==</span> strc<span class="token punctuation">)</span><span class="token punctuation">;</span>//true
+  9         <span class="token punctuation">}</span>
+ 10 <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h4><p><img src="media/15002781881180/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-18%2016.20.02.png" alt="屏幕快照 2017-07-18 16.20.02"></p>
+<pre><code>通过分析可以看出：&quot;==&quot; 确实进行了比较，但是比较的是内存地址的数值，所有“==”是属于数值的比较，比较的是内存地址。
+因此若要比较字符串的内容的话， 那么可以使用String类里面定义的方法： 
+
+· 比较内容（与原始定义有一些差别）：public boolean equals（String str）;
+</code></pre><p>范例： </p>
+<pre class=" language-bash"><code class="language-bash">  1 public class StringDemo <span class="token punctuation">{</span>
+  2         public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  3                 String stra <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+  4                 String strb <span class="token operator">=</span> new String<span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  5                 String strc <span class="token operator">=</span> strb<span class="token punctuation">;</span>
+  6                 System.out.println<span class="token punctuation">(</span>stra.equals<span class="token punctuation">(</span>strb<span class="token punctuation">))</span><span class="token punctuation">;</span>  //true
+  7                 System.out.println<span class="token punctuation">(</span>stra.equals<span class="token punctuation">(</span>strc<span class="token punctuation">))</span><span class="token punctuation">;</span>  //true
+  8                 System.out.println<span class="token punctuation">(</span>strb.equals<span class="token punctuation">(</span>strc<span class="token punctuation">))</span><span class="token punctuation">;</span>  //true
+  9         <span class="token punctuation">}</span>
+ 10 <span class="token punctuation">}</span>
+</code></pre>
+<p>面试题：请解释在字符串中相等的判断中“==”与“equals（）”的区别？</p>
+<pre><code>· “==”是Java提供的关系运符，主要功能是进行数值相等的判断，如果用在了String对象上表示的是内存地址数值的比较；
+·  “equals（）”：是由String提供的一个方法，此方法专门负责进行字符串的比较。
+</code></pre><h2 id="S字符串常量就是String的匿名对象"><a href="#S字符串常量就是String的匿名对象" class="headerlink" title="S字符串常量就是String的匿名对象"></a>S字符串常量就是String的匿名对象</h2><p>范例：观察字符串是匿名对象的验证</p>
+<pre class=" language-bash"><code class="language-bash">  1 public class StringDemo <span class="token punctuation">{</span>
+  2         public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  3                 String str <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+  4                 System.out.println<span class="token punctuation">(</span><span class="token string">"hello"</span>.equals<span class="token punctuation">(</span>str<span class="token punctuation">))</span><span class="token punctuation">;</span>
+  5         <span class="token punctuation">}</span>
+  6 <span class="token punctuation">}</span>
+</code></pre>
+<p> 那么所谓的匿名赋值就是将一个匿名对象设置了一个名字而已，但是唯一的区别是，String类的匿名对象是系统自动生成的，不再由用户自己直接创建。<br> 小小技巧：为了避免空指向异常（使用了未实例化的对象或者使用了未实例化的引用数据类型 ）的出现，可以将字符串写在前面调用方法</p>
+<pre class=" language-bash"><code class="language-bash">  1 public class StringDemo <span class="token punctuation">{</span>
+  2         public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  3                 String input <span class="token operator">=</span> null<span class="token punctuation">;</span>    //假设这个内容由用户输入
+  4                  //如果用户输入的是hello，满足条件
+  5                 if<span class="token punctuation">(</span><span class="token string">"hello"</span>.equals<span class="token punctuation">(</span>input<span class="token punctuation">))</span><span class="token punctuation">{</span>  //equals处理null
+  6                         System.out.println<span class="token punctuation">(</span><span class="token string">"Hello World"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  7                 <span class="token punctuation">}</span>
+  8         <span class="token punctuation">}</span>
+  9 <span class="token punctuation">}</span>
+</code></pre>
+<p>倒过来使用永远不会出现空指向异常。</p>
+<h4 id="特别注意：在以后的开发中，如果要判断输入内容是否是某一字符串，一定要把字符串写在最前面-。"><a href="#特别注意：在以后的开发中，如果要判断输入内容是否是某一字符串，一定要把字符串写在最前面-。" class="headerlink" title="特别注意：在以后的开发中，如果要判断输入内容是否是某一字符串，一定要把字符串写在最前面 。"></a>特别注意：在以后的开发中，如果要判断输入内容是否是某一字符串，一定要把字符串写在最前面 。</h4><h2 id="String类的两种实例化的区别"><a href="#String类的两种实例化的区别" class="headerlink" title="String类的两种实例化的区别"></a>String类的两种实例化的区别</h2><h5 id="1-直接赋值-只会开辟一个堆内存空间，并且会自动保存在对象池之中以供下次重复使用。"><a href="#1-直接赋值-只会开辟一个堆内存空间，并且会自动保存在对象池之中以供下次重复使用。" class="headerlink" title="1.直接赋值:只会开辟一个堆内存空间，并且会自动保存在对象池之中以供下次重复使用。"></a>1.直接赋值:只会开辟一个堆内存空间，并且会自动保存在对象池之中以供下次重复使用。</h5><pre class=" language-bash"><code class="language-bash">  1 public class StringDemo <span class="token punctuation">{</span>
+  2         public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  3                 String stra <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  4                 String strb <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  5                 String strc <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  6                 String strd <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  7                 System.out.println<span class="token punctuation">(</span>stra <span class="token operator">==</span> strb<span class="token punctuation">)</span><span class="token punctuation">;</span> //true
+  8                 System.out.println<span class="token punctuation">(</span>stra <span class="token operator">==</span> strc<span class="token punctuation">)</span><span class="token punctuation">;</span> //true
+  9                 System.out.println<span class="token punctuation">(</span>strb <span class="token operator">==</span> strc<span class="token punctuation">)</span><span class="token punctuation">;</span> //true
+ 10                 System.out.println<span class="token punctuation">(</span>stra <span class="token operator">==</span> strd<span class="token punctuation">)</span><span class="token punctuation">;</span> //false
+ 11                 <span class="token punctuation">}</span>
+ 12 <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="分析图："><a href="#分析图：" class="headerlink" title="分析图："></a>分析图：</h4><p><img src="media/15002781881180/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-18%2017.25.07.png" alt="屏幕快照 2017-07-18 17.25.07"></p>
+<h4 id="共享设计模式："><a href="#共享设计模式：" class="headerlink" title="共享设计模式："></a>共享设计模式：</h4><p>在JVM的底层实际上会存在一个对象池（不一定只保存String对象），当代码中使用了直接赋值的方式定义了一个String 类对象时，会将此字符串对象所使用的匿名对象入池保存，而后如果后面还有其他String类对象也采用了直接赋值的方式，并且设置了同样内容的时候，不会开辟新的堆内存空间，而是会使用已有的对象进行引用的分配，从而继续使用。</p>
+<h5 id="2-采用构造方法实例化：（String-str-new-String（“字符串”）；）：会开辟两个堆内存空间，其中有一块空间将成为垃圾，并且不会自动入池，但是用户可以使用-intern（）方法手工入池。即：String-str-new-String（“字符串”）-intern（）；"><a href="#2-采用构造方法实例化：（String-str-new-String（“字符串”）；）：会开辟两个堆内存空间，其中有一块空间将成为垃圾，并且不会自动入池，但是用户可以使用-intern（）方法手工入池。即：String-str-new-String（“字符串”）-intern（）；" class="headerlink" title="2.采用构造方法实例化：（String str = new String（“字符串”）；）：会开辟两个堆内存空间，其中有一块空间将成为垃圾，并且不会自动入池，但是用户可以使用 intern（）方法手工入池。即：String str = new String（“字符串”）.intern（）；"></a>2.采用构造方法实例化：（String str = new String（“字符串”）；）：会开辟两个堆内存空间，其中有一块空间将成为垃圾，并且不会自动入池，但是用户可以使用 intern（）方法手工入池。即：String str = new String（“字符串”）.intern（）；</h5><h4 id="字符串内容一旦定义就不可更改"><a href="#字符串内容一旦定义就不可更改" class="headerlink" title="字符串内容一旦定义就不可更改"></a>字符串内容一旦定义就不可更改</h4><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>String类的特点：</p>
+<pre><code>1. String 类对象的相等判断使用 equals（） 方法完成，“==”实现的是地址数值比较。
+2. 字符串内容一旦声明则不可改变,String类对象内容的改变是依靠引用关系的变更实现的
+3. String 类有两种是实例化方式，使用直接赋值可以不产生垃圾空间，并且可以自动入池，不要使用构造方法。
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> Java8程序设计 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[《日出入》乐府诗]]></title>
       <url>/2017/07/17/----4/</url>
       <content type="html"><![CDATA[<h2 id="《日出入》-西汉乐府诗集"><a href="#《日出入》-西汉乐府诗集" class="headerlink" title="《日出入》  西汉乐府诗集"></a>《日出入》  西汉乐府诗集</h2><p><img src="http://osltchohc.bkt.clouddn.com/20120118101048.jpg?
@@ -303,6 +404,35 @@ public class ArrayOne <span class="token punctuation">{</span>
         <categories>
             
             <category> Java8程序设计 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MySQL<关系型数据库常用概念>]]></title>
+      <url>/2017/07/15/----7/</url>
+      <content type="html"><![CDATA[<h2 id="MySQL-lt-关系型数据库常用概念-gt"><a href="#MySQL-lt-关系型数据库常用概念-gt" class="headerlink" title="MySQL&lt;关系型数据库常用概念&gt;"></a>MySQL&lt;关系型数据库常用概念&gt;</h2><p>数据库、数据库管理系统<br><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.32.35.png" alt="屏幕快照 2017-07-15 17.32.35"></p>
+<p>关系型数据库常用概念</p>
+<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.07.48.png" alt="屏幕快照 2017-07-15 17.07.48"></p>
+<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.14.26.png" alt="屏幕快照 2017-07-15 17.14.26"></p>
+<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.16.42.png" alt="屏幕快照 2017-07-15 17.16.42"></p>
+<p>主键：</p>
+<ol>
+<li>不能重复，不能为空</li>
+<li>若主键重复或为空则称之为失去实体完整性</li>
+</ol>
+<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.22.52.png" alt="屏幕快照 2017-07-15 17.22.52"></p>
+<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.25.15.png" alt="屏幕快照 2017-07-15 17.25.15"></p>
+<h2 id="结构化查询语句SQL简介"><a href="#结构化查询语句SQL简介" class="headerlink" title="结构化查询语句SQL简介"></a>结构化查询语句SQL简介</h2><p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.28.59.png" alt="屏幕快照 2017-07-15 17.28.59"></p>
+<h2 id="数据库管理"><a href="#数据库管理" class="headerlink" title="数据库管理"></a>数据库管理</h2><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><p><img src="media/15004333635462/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-19%2011.03.27.png" alt="屏幕快照 2017-07-19 11.03.27"></p>
+<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p><img src="media/15004333635462/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-19%2011.05.07.png" alt="屏幕快照 2017-07-19 11.05.07"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> MySQL数据库 </category>
             
         </categories>
         
