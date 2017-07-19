@@ -33,7 +33,8 @@
   9         <span class="token punctuation">}</span>
  10 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h4><p><img src="media/15002781881180/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-18%2016.20.02.png" alt="屏幕快照 2017-07-18 16.20.02"></p>
+<h4 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h4><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-18 16.20.02.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-18 16.20.02"></p>
 <pre><code>通过分析可以看出：&quot;==&quot; 确实进行了比较，但是比较的是内存地址的数值，所有“==”是属于数值的比较，比较的是内存地址。
 因此若要比较字符串的内容的话， 那么可以使用String类里面定义的方法： 
 
@@ -86,7 +87,8 @@
  11                 <span class="token punctuation">}</span>
  12 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="分析图："><a href="#分析图：" class="headerlink" title="分析图："></a>分析图：</h4><p><img src="media/15002781881180/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-18%2017.25.07.png" alt="屏幕快照 2017-07-18 17.25.07"></p>
+<h4 id="分析图："><a href="#分析图：" class="headerlink" title="分析图："></a>分析图：</h4><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-18 17.25.07.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-18 17.25.07"></p>
 <h4 id="共享设计模式："><a href="#共享设计模式：" class="headerlink" title="共享设计模式："></a>共享设计模式：</h4><p>在JVM的底层实际上会存在一个对象池（不一定只保存String对象），当代码中使用了直接赋值的方式定义了一个String 类对象时，会将此字符串对象所使用的匿名对象入池保存，而后如果后面还有其他String类对象也采用了直接赋值的方式，并且设置了同样内容的时候，不会开辟新的堆内存空间，而是会使用已有的对象进行引用的分配，从而继续使用。</p>
 <h5 id="2-采用构造方法实例化：（String-str-new-String（“字符串”）；）：会开辟两个堆内存空间，其中有一块空间将成为垃圾，并且不会自动入池，但是用户可以使用-intern（）方法手工入池。即：String-str-new-String（“字符串”）-intern（）；"><a href="#2-采用构造方法实例化：（String-str-new-String（“字符串”）；）：会开辟两个堆内存空间，其中有一块空间将成为垃圾，并且不会自动入池，但是用户可以使用-intern（）方法手工入池。即：String-str-new-String（“字符串”）-intern（）；" class="headerlink" title="2.采用构造方法实例化：（String str = new String（“字符串”）；）：会开辟两个堆内存空间，其中有一块空间将成为垃圾，并且不会自动入池，但是用户可以使用 intern（）方法手工入池。即：String str = new String（“字符串”）.intern（）；"></a>2.采用构造方法实例化：（String str = new String（“字符串”）；）：会开辟两个堆内存空间，其中有一块空间将成为垃圾，并且不会自动入池，但是用户可以使用 intern（）方法手工入池。即：String str = new String（“字符串”）.intern（）；</h5><h4 id="字符串内容一旦定义就不可更改"><a href="#字符串内容一旦定义就不可更改" class="headerlink" title="字符串内容一旦定义就不可更改"></a>字符串内容一旦定义就不可更改</h4><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>String类的特点：</p>
 <pre><code>1. String 类对象的相等判断使用 equals（） 方法完成，“==”实现的是地址数值比较。
@@ -413,21 +415,30 @@ public class ArrayOne <span class="token punctuation">{</span>
     <entry>
       <title><![CDATA[MySQL<关系型数据库常用概念>]]></title>
       <url>/2017/07/15/----7/</url>
-      <content type="html"><![CDATA[<h2 id="MySQL-lt-关系型数据库常用概念-gt"><a href="#MySQL-lt-关系型数据库常用概念-gt" class="headerlink" title="MySQL&lt;关系型数据库常用概念&gt;"></a>MySQL&lt;关系型数据库常用概念&gt;</h2><p>数据库、数据库管理系统<br><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.32.35.png" alt="屏幕快照 2017-07-15 17.32.35"></p>
+      <content type="html"><![CDATA[<h2 id="MySQL-lt-关系型数据库常用概念-gt"><a href="#MySQL-lt-关系型数据库常用概念-gt" class="headerlink" title="MySQL&lt;关系型数据库常用概念&gt;"></a>MySQL&lt;关系型数据库常用概念&gt;</h2><p>数据库、数据库管理系统<br><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-15 17.32.35.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-15 17.32.35"></p>
 <p>关系型数据库常用概念</p>
-<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.07.48.png" alt="屏幕快照 2017-07-15 17.07.48"></p>
-<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.14.26.png" alt="屏幕快照 2017-07-15 17.14.26"></p>
-<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.16.42.png" alt="屏幕快照 2017-07-15 17.16.42"></p>
+<p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-15 17.07.48.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-15 17.07.48"></p>
+<p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-15 17.14.26.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-15 17.14.26"></p>
+<p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-15 17.16.42.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-15 17.16.42"></p>
 <p>主键：</p>
 <ol>
 <li>不能重复，不能为空</li>
 <li>若主键重复或为空则称之为失去实体完整性</li>
 </ol>
-<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.22.52.png" alt="屏幕快照 2017-07-15 17.22.52"></p>
-<p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.25.15.png" alt="屏幕快照 2017-07-15 17.25.15"></p>
-<h2 id="结构化查询语句SQL简介"><a href="#结构化查询语句SQL简介" class="headerlink" title="结构化查询语句SQL简介"></a>结构化查询语句SQL简介</h2><p><img src="media/15001043958166/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-15%2017.28.59.png" alt="屏幕快照 2017-07-15 17.28.59"></p>
-<h2 id="数据库管理"><a href="#数据库管理" class="headerlink" title="数据库管理"></a>数据库管理</h2><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><p><img src="media/15004333635462/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-19%2011.03.27.png" alt="屏幕快照 2017-07-19 11.03.27"></p>
-<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p><img src="media/15004333635462/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-07-19%2011.05.07.png" alt="屏幕快照 2017-07-19 11.05.07"></p>
+<p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-15 17.22.52.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-15 17.22.52"></p>
+<p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-15 17.25.15.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-15 17.25.15"></p>
+<h2 id="结构化查询语句SQL简介"><a href="#结构化查询语句SQL简介" class="headerlink" title="结构化查询语句SQL简介"></a>结构化查询语句SQL简介</h2><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-15 17.28.59.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-15 17.28.59"></p>
+<h2 id="数据库管理"><a href="#数据库管理" class="headerlink" title="数据库管理"></a>数据库管理</h2><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-19 11.03.27.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-19 11.03.27"></p>
+<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-19 11.05.07.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-19 11.05.07"></p>
 ]]></content>
       
         <categories>
