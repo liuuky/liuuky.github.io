@@ -3,6 +3,477 @@
   
     
     <entry>
+      <title><![CDATA[简单Java类深入]]></title>
+      <url>/2017/07/24/----10/</url>
+      <content type="html"><![CDATA[<h2 id="数据表与简单Java类映射"><a href="#数据表与简单Java类映射" class="headerlink" title="数据表与简单Java类映射"></a>数据表与简单Java类映射</h2><h5 id="要求通过Java程序描述出dept-emp关系，使用字段："><a href="#要求通过Java程序描述出dept-emp关系，使用字段：" class="headerlink" title="要求通过Java程序描述出dept-emp关系，使用字段："></a>要求通过Java程序描述出dept-emp关系，使用字段：</h5><h5 id="·-dept：deptno、deptname、deptloc"><a href="#·-dept：deptno、deptname、deptloc" class="headerlink" title="· dept：deptno、deptname、deptloc"></a>· dept：deptno、deptname、deptloc</h5><h5 id="·-emp：empno、ename、job、sal、comm、deptno、mgr"><a href="#·-emp：empno、ename、job、sal、comm、deptno、mgr" class="headerlink" title="· emp：empno、ename、job、sal、comm、deptno、mgr"></a>· emp：empno、ename、job、sal、comm、deptno、mgr</h5><h5 id="在dept-emp表关系中存在如下的关联"><a href="#在dept-emp表关系中存在如下的关联" class="headerlink" title="在dept-emp表关系中存在如下的关联"></a>在dept-emp表关系中存在如下的关联</h5><h5 id="·-一个部门有多个雇员"><a href="#·-一个部门有多个雇员" class="headerlink" title="· 一个部门有多个雇员"></a>· 一个部门有多个雇员</h5><h5 id="·-一个雇员有一个或零个领导"><a href="#·-一个雇员有一个或零个领导" class="headerlink" title="· 一个雇员有一个或零个领导"></a>· 一个雇员有一个或零个领导</h5><h4 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h4><hr>
+<pre class=" language-bash"><code class="language-bash">class Dept <span class="token punctuation">{</span>
+    private int deptno <span class="token punctuation">;</span> 
+    private String deptname <span class="token punctuation">;</span>
+    private String deptloc <span class="token punctuation">;</span>
+    private Emp emps<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+    public void setEmps<span class="token punctuation">(</span>Emp <span class="token punctuation">[</span><span class="token punctuation">]</span> emps<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.emps <span class="token operator">=</span> emps <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Emp<span class="token punctuation">[</span><span class="token punctuation">]</span> getEmps<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.emps <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+    public Dept <span class="token punctuation">(</span>int deptno,String deptname,String deptloc<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.deptno <span class="token operator">=</span> deptno<span class="token punctuation">;</span>
+        this.deptname <span class="token operator">=</span> deptname<span class="token punctuation">;</span>
+        this.deptloc <span class="token operator">=</span> deptloc<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"部门编号："</span> + this.deptno + <span class="token string">",部门名字:"</span> + this.deptname + <span class="token string">",地点:"</span> + this.deptloc <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+class Emp <span class="token punctuation">{</span>
+    private int empno <span class="token punctuation">;</span>
+    private String ename <span class="token punctuation">;</span>
+    private String job <span class="token punctuation">;</span> 
+    private double sal <span class="token punctuation">;</span>
+    private double <span class="token function">comm</span> <span class="token punctuation">;</span>
+    private Dept dept <span class="token punctuation">;</span>
+    private Emp mgr <span class="token punctuation">;</span>
+    public void setMgr<span class="token punctuation">(</span>Emp mgr<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.mgr <span class="token operator">=</span> mgr <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Emp getMgr<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.mgr <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+    public void setDept<span class="token punctuation">(</span>Dept dept<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.dept <span class="token operator">=</span> dept <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>    
+    public Dept getDept<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.dept <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Emp <span class="token punctuation">(</span>int empno,String ename,String job,double sal,double <span class="token function">comm</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.empno <span class="token operator">=</span> empno <span class="token punctuation">;</span>
+        this.ename <span class="token operator">=</span> ename <span class="token punctuation">;</span>
+        this.job <span class="token operator">=</span> job <span class="token punctuation">;</span>
+        this.sal <span class="token operator">=</span> sal <span class="token punctuation">;</span>
+        this.comm <span class="token operator">=</span>comm <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"部员编号:"</span> + this.empno + <span class="token string">"，部员名字:"</span> + this.ename + <span class="token string">",职位:"</span> + this.job + <span class="token string">",工资:"</span> + 
+
+this.sal + <span class="token string">",佣金:"</span> + this.comm <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+public class Test2<span class="token punctuation">{</span>
+    public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Dept dept <span class="token operator">=</span> new Dept<span class="token punctuation">(</span>10,<span class="token string">"ACOUNTING"</span>,<span class="token string">"guangxi"</span><span class="token punctuation">)</span>    <span class="token punctuation">;</span>
+        Emp ea <span class="token operator">=</span> new Emp<span class="token punctuation">(</span>957,<span class="token string">"as"</span>,<span class="token string">"CLERK"</span>,800.0,0.0<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Emp eb <span class="token operator">=</span> new Emp<span class="token punctuation">(</span>985,<span class="token string">"bs"</span>,<span class="token string">"MANAGER"</span>,2450.0,0.0<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Emp ec <span class="token operator">=</span> new Emp<span class="token punctuation">(</span>900,<span class="token string">"cs"</span>,<span class="token string">"PRESIDENT"</span>,5000.0,0.0<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        ea.setMgr<span class="token punctuation">(</span>eb<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        eb.setMgr<span class="token punctuation">(</span>ec<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        ea.setDept<span class="token punctuation">(</span>dept<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        eb.setDept<span class="token punctuation">(</span>dept<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        ec.setDept<span class="token punctuation">(</span>dept<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        dept.setEmps<span class="token punctuation">(</span>new Emp<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>ea,eb,ec<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span><span class="token string">"\t|-"</span> + ea.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span><span class="token string">"\t|-"</span> + ea.getMgr<span class="token punctuation">(</span><span class="token punctuation">)</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>ea.getDept<span class="token punctuation">(</span><span class="token punctuation">)</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span><span class="token string">"********************************"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>dept.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>int x <span class="token operator">=</span> 0 <span class="token punctuation">;</span> x <span class="token operator">&lt;</span> dept.getEmps<span class="token punctuation">(</span><span class="token punctuation">)</span>.length <span class="token punctuation">;</span> x++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span>dept.getEmps<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            if<span class="token punctuation">(</span>dept.getEmps<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getMgr<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                System.out.println<span class="token punctuation">(</span><span class="token string">"\t\t|-"</span> + dept.getEmps<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getMgr<span class="token punctuation">(</span><span class="token punctuation">)</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="一对多映射（省份-城市）"><a href="#一对多映射（省份-城市）" class="headerlink" title="一对多映射（省份-城市）"></a>一对多映射（省份-城市）</h2><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-24 17.04.32.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-24 17.04.32"></p>
+<h4 id="代码如下-1"><a href="#代码如下-1" class="headerlink" title="代码如下"></a>代码如下</h4><hr>
+<pre class=" language-bash"><code class="language-bash">class Province <span class="token punctuation">{</span>
+    private int pid <span class="token punctuation">;</span>
+    private String pname <span class="token punctuation">;</span>
+    private City cities <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+    public Province<span class="token punctuation">(</span>int pid , String pname<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.pid <span class="token operator">=</span> pid <span class="token punctuation">;</span>
+        this.pname <span class="token operator">=</span> pname <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setCities <span class="token punctuation">(</span>City cities<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.cities <span class="token operator">=</span> cities <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public City<span class="token punctuation">[</span><span class="token punctuation">]</span> getCities<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.cities <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"省份编号:"</span> + this.pid + <span class="token string">", 省份名字:"</span> + this.pname <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+class City <span class="token punctuation">{</span>
+    private int cid <span class="token punctuation">;</span>
+    private String cname <span class="token punctuation">;</span>
+    private Province province <span class="token punctuation">;</span> 
+    public void setProvince<span class="token punctuation">(</span>Province province<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.province <span class="token operator">=</span> province <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Province getProvince<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.province <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public City<span class="token punctuation">(</span>int cid , String cname<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.cid <span class="token operator">=</span> cid <span class="token punctuation">;</span>
+        this.cname <span class="token operator">=</span> cname <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"城市编号:"</span> + this.cid + <span class="token string">", 城市名称:"</span> + this.cname <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+public class Test3<span class="token punctuation">{</span>
+    public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Province pro <span class="token operator">=</span> new Province<span class="token punctuation">(</span>1,<span class="token string">"河北省"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        City c1 <span class="token operator">=</span> new City<span class="token punctuation">(</span>1001,<span class="token string">"唐山"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        City c2 <span class="token operator">=</span> new City<span class="token punctuation">(</span>1002,<span class="token string">"秦皇岛"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        City c3 <span class="token operator">=</span> new City<span class="token punctuation">(</span>1003,<span class="token string">"石家庄"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        c1.setProvince<span class="token punctuation">(</span>pro<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        c2.setProvince<span class="token punctuation">(</span>pro<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        c3.setProvince<span class="token punctuation">(</span>pro<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        pro.setCities<span class="token punctuation">(</span>new City<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>c1,c2,c3<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>c2.getProvince<span class="token punctuation">(</span><span class="token punctuation">)</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        for<span class="token punctuation">(</span>int x <span class="token operator">=</span> 0 <span class="token punctuation">;</span> x <span class="token operator">&lt;</span> pro.getCities<span class="token punctuation">(</span><span class="token punctuation">)</span>.length <span class="token punctuation">;</span> x++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span><span class="token string">"\t |-"</span> + pro.getCities<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="双向一对多映射（类型-子类型-商品）"><a href="#双向一对多映射（类型-子类型-商品）" class="headerlink" title="双向一对多映射（类型-子类型-商品）"></a>双向一对多映射（类型-子类型-商品）</h2><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-24 17.06.56.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-24 17.06.56"></p>
+<h4 id="代码如下-2"><a href="#代码如下-2" class="headerlink" title="代码如下"></a>代码如下</h4><hr>
+<pre class=" language-bash"><code class="language-bash">class Item<span class="token punctuation">{</span>
+    private int iid <span class="token punctuation">;</span>
+    private String name <span class="token punctuation">;</span>
+    private String note <span class="token punctuation">;</span>
+    private Subitem subitems <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+    private Product products <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+    public Item<span class="token punctuation">(</span>int iid,String name,String note<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.iid <span class="token operator">=</span> iid <span class="token punctuation">;</span>
+        this.name <span class="token operator">=</span> name <span class="token punctuation">;</span>
+        this.note <span class="token operator">=</span> note<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setSubitem<span class="token punctuation">(</span>Subitem subitems<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.subitems <span class="token operator">=</span> subitems <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Subitem <span class="token punctuation">[</span><span class="token punctuation">]</span> getSubitem<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.subitems <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setProduct<span class="token punctuation">(</span>Product products<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.products <span class="token operator">=</span> products <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Product <span class="token punctuation">[</span><span class="token punctuation">]</span> getProduct<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.products <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"栏目编号："</span> + this.iid + <span class="token string">", 名称:"</span> + this.name + <span class="token string">", 描述："</span> + this.note <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+class Subitem<span class="token punctuation">{</span>
+    private int sid <span class="token punctuation">;</span>
+    private String name <span class="token punctuation">;</span>
+    private String note <span class="token punctuation">;</span> 
+    private Item item <span class="token punctuation">;</span>
+    private Product products <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+    public Subitem<span class="token punctuation">(</span>int sid,String name,String note<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.sid <span class="token operator">=</span> sid <span class="token punctuation">;</span>
+        this.name <span class="token operator">=</span> name <span class="token punctuation">;</span>
+        this.note <span class="token operator">=</span> note <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setItem<span class="token punctuation">(</span>Item item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.item <span class="token operator">=</span> item <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Item getItem<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.item <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setProduct<span class="token punctuation">(</span>Product products<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.products <span class="token operator">=</span> products <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Product<span class="token punctuation">[</span><span class="token punctuation">]</span> getProduct<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.products <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"子栏目编号:"</span> + this.sid + <span class="token string">", 名称:"</span> + this.name + <span class="token string">", 描述:"</span> + this.note <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+class Product<span class="token punctuation">{</span>
+    private int pid <span class="token punctuation">;</span>
+    private String name <span class="token punctuation">;</span>
+    private double price <span class="token punctuation">;</span>
+    private Item item <span class="token punctuation">;</span>
+    private Subitem subitem<span class="token punctuation">;</span>
+    public Product<span class="token punctuation">(</span>int pid,String name,double price<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.pid <span class="token operator">=</span> pid <span class="token punctuation">;</span>
+        this.name <span class="token operator">=</span> name <span class="token punctuation">;</span>
+        this.price <span class="token operator">=</span> price <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setItem<span class="token punctuation">(</span>Item item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.item <span class="token operator">=</span> item <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Item getItem<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.item <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setSubitem<span class="token punctuation">(</span>Subitem subitem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.subitem <span class="token operator">=</span> subitem <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Subitem getSubitem<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.subitem <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"商品编号:"</span> + this.pid + <span class="token string">", 名称:"</span> + this.name + <span class="token string">", 价格:"</span> + this.price <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+public class Test4 <span class="token punctuation">{</span>
+    public static void main<span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Item item <span class="token operator">=</span> new Item <span class="token punctuation">(</span>1,<span class="token string">"厨房用具"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span>    <span class="token punctuation">;</span>
+        Subitem suba <span class="token operator">=</span> new Subitem<span class="token punctuation">(</span>1001,<span class="token string">"厨具"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Subitem subb <span class="token operator">=</span> new Subitem<span class="token punctuation">(</span>1002,<span class="token string">"刀具"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Subitem subc <span class="token operator">=</span> new Subitem<span class="token punctuation">(</span>1002,<span class="token string">"餐具"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Product proa <span class="token operator">=</span> new Product<span class="token punctuation">(</span>90001,<span class="token string">"蒸锅"</span>,251.0<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Product prob <span class="token operator">=</span> new Product<span class="token punctuation">(</span>90002,<span class="token string">"炒锅"</span>,510.0<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Product proc <span class="token operator">=</span> new Product<span class="token punctuation">(</span>90003,<span class="token string">"菜刀"</span>,25.0<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Product prod <span class="token operator">=</span> new Product<span class="token punctuation">(</span>90004,<span class="token string">"水果刀"</span>,15.0<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Product proe <span class="token operator">=</span> new Product<span class="token punctuation">(</span>90005,<span class="token string">"瓷碗"</span>,12.0<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        Product prof <span class="token operator">=</span> new Product<span class="token punctuation">(</span>90006,<span class="token string">"竹筷子"</span>,5.0<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        suba.setItem<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        subb.setItem<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        subc.setItem<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        item.setSubitem<span class="token punctuation">(</span>new Subitem<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>suba,subb,subc<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        proa.setSubitem<span class="token punctuation">(</span>suba<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        proa.setItem<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        prob.setSubitem<span class="token punctuation">(</span>suba<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        prob.setItem<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        proc.setSubitem<span class="token punctuation">(</span>subb<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        proc.setItem<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        prod.setSubitem<span class="token punctuation">(</span>subb<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        prod.setItem<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        proe.setSubitem<span class="token punctuation">(</span>subc<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        proe.setItem<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        prof.setSubitem<span class="token punctuation">(</span>subc<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        prof.setItem<span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        suba.setProduct<span class="token punctuation">(</span>new Product<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>proa,prob<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        subb.setProduct<span class="token punctuation">(</span>new Product<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>proc,prod<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        subc.setProduct<span class="token punctuation">(</span>new Product<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>proe,prof<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        item.setProduct<span class="token punctuation">(</span>new Product<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>proa,prob,proc,prod,proe,prof<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>item.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>int x <span class="token operator">=</span> 0 <span class="token punctuation">;</span> x <span class="token operator">&lt;</span> item.getSubitem<span class="token punctuation">(</span><span class="token punctuation">)</span>.length <span class="token punctuation">;</span> x++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span><span class="token string">"\t|-"</span> + item.getSubitem<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        System.out.println<span class="token punctuation">(</span><span class="token string">"*******************************************"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>item.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>int x <span class="token operator">=</span>0 <span class="token punctuation">;</span> x <span class="token operator">&lt;</span> item.getProduct<span class="token punctuation">(</span><span class="token punctuation">)</span>.length <span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span><span class="token string">"\t|-"</span> + item.getProduct<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+            System.out.println<span class="token punctuation">(</span><span class="token string">"\t|-"</span> + item.getProduct<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getSubitem<span class="token punctuation">(</span><span class="token punctuation">)</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        System.out.println<span class="token punctuation">(</span><span class="token string">"*******************************************"</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>subb.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>int x <span class="token operator">=</span> 0 <span class="token punctuation">;</span> x <span class="token operator">&lt;</span> subb.getProduct<span class="token punctuation">(</span><span class="token punctuation">)</span>.length <span class="token punctuation">;</span> x++<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span><span class="token string">"\t|-"</span> + subb.getProduct<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span> <span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="多对多映射（管理员-角色-组-权限）"><a href="#多对多映射（管理员-角色-组-权限）" class="headerlink" title="多对多映射（管理员-角色-组-权限）"></a>多对多映射（管理员-角色-组-权限）</h2><p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-24 17.11.56.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-24 17.11.56"></p>
+<p><img src="http://osltchohc.bkt.clouddn.com/屏幕快照 2017-07-24 17.12.22.png?
+imageView2/0/q/75|watermark/2/text/S2V2aW4ncyBCbG9n/font/5a6L5L2T/fontsize/500/fill/I0VCRjBGNQ==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim" alt="屏幕快照 2017-07-24 17.12.22"></p>
+<h4 id="代码如下-3"><a href="#代码如下-3" class="headerlink" title="代码如下"></a>代码如下</h4><hr>
+<pre class=" language-bash"><code class="language-bash">class Admin<span class="token punctuation">{</span>
+    private String aid<span class="token punctuation">;</span>
+    private String password<span class="token punctuation">;</span> 
+    private Role role<span class="token punctuation">;</span>
+    public Admin<span class="token punctuation">(</span>String aid,String password<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.aid<span class="token operator">=</span>aid<span class="token punctuation">;</span>
+        this.password<span class="token operator">=</span>password<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Role getRole<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.role<span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+    public void setRole<span class="token punctuation">(</span>Role role<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.role<span class="token operator">=</span>role<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"管理员编码:"</span>+this.aid+<span class="token string">",密码："</span>+this.password<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+class Role<span class="token punctuation">{</span>
+    private int rid<span class="token punctuation">;</span>
+    private String title<span class="token punctuation">;</span>
+    private Admin<span class="token punctuation">[</span><span class="token punctuation">]</span> admins<span class="token punctuation">;</span>
+    private Group<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">groups</span><span class="token punctuation">;</span> 
+    public Role<span class="token punctuation">(</span>int rid, String title<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        this.rid <span class="token operator">=</span> rid<span class="token punctuation">;</span>
+        this.title <span class="token operator">=</span> title<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setAdmin<span class="token punctuation">(</span>Admin<span class="token punctuation">[</span><span class="token punctuation">]</span> admins<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.admins<span class="token operator">=</span>admins<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Admin<span class="token punctuation">[</span><span class="token punctuation">]</span> getAdmin<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.admins<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setGroup<span class="token punctuation">(</span>Group<span class="token punctuation">[</span><span class="token punctuation">]</span> groups<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        this.groups<span class="token operator">=</span>groups<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Group<span class="token punctuation">[</span><span class="token punctuation">]</span> getGroup<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> this.groups<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"角色编号:"</span>+this.rid+<span class="token string">"，名称:"</span>+this.title<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+class Group<span class="token punctuation">{</span>
+    private int gid<span class="token punctuation">;</span>
+    private String title<span class="token punctuation">;</span>
+    private Role<span class="token punctuation">[</span><span class="token punctuation">]</span> role<span class="token punctuation">;</span>
+    private Action<span class="token punctuation">[</span><span class="token punctuation">]</span> actions<span class="token punctuation">;</span>
+
+    public Group<span class="token punctuation">(</span>int gid, String title<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        this.gid <span class="token operator">=</span> gid<span class="token punctuation">;</span>
+        this.title <span class="token operator">=</span> title<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    public Role<span class="token punctuation">[</span><span class="token punctuation">]</span> getRole<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> role<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setRole<span class="token punctuation">(</span>Role<span class="token punctuation">[</span><span class="token punctuation">]</span> role<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.role <span class="token operator">=</span> role<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Action<span class="token punctuation">[</span><span class="token punctuation">]</span> getActions<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> actions<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setActions<span class="token punctuation">(</span>Action<span class="token punctuation">[</span><span class="token punctuation">]</span> actions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.actions <span class="token operator">=</span> actions<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"权限组编号:"</span>+this.gid+<span class="token string">",名称："</span>+this.title<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+class Action<span class="token punctuation">{</span>
+    private int aid<span class="token punctuation">;</span>
+    private String title<span class="token punctuation">;</span>
+    private String url<span class="token punctuation">;</span>
+    private Group group<span class="token punctuation">;</span>
+    public Group getGroup<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> group<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public void setGroup<span class="token punctuation">(</span>Group group<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        this.group <span class="token operator">=</span> group<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public Action<span class="token punctuation">(</span>int aid, String title, String url<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        super<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        this.aid <span class="token operator">=</span> aid<span class="token punctuation">;</span>
+        this.title <span class="token operator">=</span> title<span class="token punctuation">;</span>
+        this.url <span class="token operator">=</span> url<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    public String getInfo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">"权限编码："</span>+this.aid+<span class="token string">",名称："</span>+this.title+<span class="token string">"，路径:"</span>+this.url<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+public class TestAdmin <span class="token punctuation">{</span>
+public static void main<span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    //第一步：设置完整关系
+    //1.准备若干个对象
+    Admin a1 <span class="token operator">=</span> new Admin<span class="token punctuation">(</span><span class="token string">"admin"</span>,<span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Admin a2 <span class="token operator">=</span> new Admin<span class="token punctuation">(</span><span class="token string">"jing"</span>,<span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Admin a3 <span class="token operator">=</span> new Admin<span class="token punctuation">(</span><span class="token string">"yv"</span>,<span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Role r1 <span class="token operator">=</span> new Role<span class="token punctuation">(</span>1,<span class="token string">"系统管理员"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Role r2 <span class="token operator">=</span> new Role<span class="token punctuation">(</span>2,<span class="token string">"信息管理员"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Group g1 <span class="token operator">=</span> new Group<span class="token punctuation">(</span>10,<span class="token string">"信息管理"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Group g2 <span class="token operator">=</span> new Group<span class="token punctuation">(</span>11,<span class="token string">"用户管理"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Group g3 <span class="token operator">=</span> new Group<span class="token punctuation">(</span>12,<span class="token string">"数据管理"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Group g4 <span class="token operator">=</span> new Group<span class="token punctuation">(</span>13,<span class="token string">"接口管理"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Group g5 <span class="token operator">=</span> new Group<span class="token punctuation">(</span>14,<span class="token string">"备份管理"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Action at01 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1001,<span class="token string">"新闻发布"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at02 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1002,<span class="token string">"新闻列表"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at03 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1003,<span class="token string">"新闻审核"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at04 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1004,<span class="token string">"增加用户"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at05 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1005,<span class="token string">"用户列表"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at06 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1006,<span class="token string">"登陆日志"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at07 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1007,<span class="token string">"雇员数据"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at08 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1008,<span class="token string">"部门数据"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at09 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1009,<span class="token string">"公司数据"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at10 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1010,<span class="token string">"服务传输"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at11 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1011,<span class="token string">"短信平台"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at12 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1012,<span class="token string">"全部备份"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Action at13 <span class="token operator">=</span> new Action<span class="token punctuation">(</span>1013,<span class="token string">"局部备份"</span>,<span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   //2.设置这些对象的关系
+    //设置管理员与角色
+    a1.setRole<span class="token punctuation">(</span>r1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    a2.setRole<span class="token punctuation">(</span>r2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    a3.setRole<span class="token punctuation">(</span>r2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    r1.setAdmin<span class="token punctuation">(</span>new Admin<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>a1<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    r2.setAdmin<span class="token punctuation">(</span>new Admin<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>a2,a3<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    //设置角色和管理员组
+    r1.setGroup<span class="token punctuation">(</span>new Group<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>g1,g2,g3,g4,g5<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    r2.setGroup<span class="token punctuation">(</span>new Group<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>g1,g2<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g1.setRole<span class="token punctuation">(</span>new Role<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>r1,r2<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g2.setRole<span class="token punctuation">(</span>new Role<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>r1,r2<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g3.setRole<span class="token punctuation">(</span>new Role<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>r1<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g4.setRole<span class="token punctuation">(</span>new Role<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>r1<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g5.setRole<span class="token punctuation">(</span>new Role<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>r1<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    //设置管理员组与权限
+    g1.setActions<span class="token punctuation">(</span>new Action<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>at01,at02,at03<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g2.setActions<span class="token punctuation">(</span>new Action<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>at04,at05,at06<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g3.setActions<span class="token punctuation">(</span>new Action<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>at07,at08,at09<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g4.setActions<span class="token punctuation">(</span>new Action<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>at10,at11<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    g5.setActions<span class="token punctuation">(</span>new Action<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span>at12,at13<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at01.setGroup<span class="token punctuation">(</span>g1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at02.setGroup<span class="token punctuation">(</span>g1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at03.setGroup<span class="token punctuation">(</span>g1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at04.setGroup<span class="token punctuation">(</span>g2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at05.setGroup<span class="token punctuation">(</span>g2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at06.setGroup<span class="token punctuation">(</span>g2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at07.setGroup<span class="token punctuation">(</span>g3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at08.setGroup<span class="token punctuation">(</span>g3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at09.setGroup<span class="token punctuation">(</span>g3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at10.setGroup<span class="token punctuation">(</span>g4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at11.setGroup<span class="token punctuation">(</span>g4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at12.setGroup<span class="token punctuation">(</span>g5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    at13.setGroup<span class="token punctuation">(</span>g5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    //取出数据
+    System.out.println<span class="token punctuation">(</span><span class="token string">"----------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System.out.println<span class="token punctuation">(</span>a1.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+    System.out.println<span class="token punctuation">(</span><span class="token string">"\t|-"</span>+a1.getRole<span class="token punctuation">(</span><span class="token punctuation">)</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+    for<span class="token punctuation">(</span>int i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>a1.getRole<span class="token punctuation">(</span><span class="token punctuation">)</span>.getGroup<span class="token punctuation">(</span><span class="token punctuation">)</span>.length<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System.out.println<span class="token punctuation">(</span>a1.getRole<span class="token punctuation">(</span><span class="token punctuation">)</span>.getGroup<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        for<span class="token punctuation">(</span>int j<span class="token operator">=</span>0<span class="token punctuation">;</span>j<span class="token operator">&lt;</span>a1.getRole<span class="token punctuation">(</span><span class="token punctuation">)</span>.getGroup<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>.getActions<span class="token punctuation">(</span><span class="token punctuation">)</span>.length<span class="token punctuation">;</span>j++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span><span class="token string">"\t\t\t|-"</span>+a1.getRole<span class="token punctuation">(</span><span class="token punctuation">)</span>.getGroup<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>.getActions<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+           <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        System.out.println<span class="token punctuation">(</span><span class="token string">"-------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span><span class="token string">"-------------------------------"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System.out.println<span class="token punctuation">(</span>g1.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        for<span class="token punctuation">(</span>int i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>g1.getRole<span class="token punctuation">(</span><span class="token punctuation">)</span>.length<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System.out.println<span class="token punctuation">(</span>g1.getRole<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        for<span class="token punctuation">(</span>int j<span class="token operator">=</span>0<span class="token punctuation">;</span>j<span class="token operator">&lt;</span>g1.getRole<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>.getAdmin<span class="token punctuation">(</span><span class="token punctuation">)</span>.length<span class="token punctuation">;</span>j++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System.out.println<span class="token punctuation">(</span><span class="token string">"\t\t|-"</span>+g1.getRole<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span>.getAdmin<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span>.getInfo<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>    
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+]]></content>
+      
+        <categories>
+            
+            <category> Java8程序设计 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[《致橡树》]]></title>
       <url>/2017/07/21/----8/</url>
       <content type="html"><![CDATA[<h2 id="《致橡树》-舒婷"><a href="#《致橡树》-舒婷" class="headerlink" title="《致橡树》 舒婷"></a>《致橡树》 <code>舒婷</code></h2><p><img src="http://osltchohc.bkt.clouddn.com/001lCj3gzy77NKYv5PQ6a-690.jpeg?
